@@ -24,7 +24,8 @@ public class MainActivity extends AppCompatActivity {
                 if (DataBaseAChanger.isUserGood(name, password))
                 {
                     Toast.makeText(MainActivity.this, "lesgo", Toast.LENGTH_SHORT).show();
-                    // open new window
+                    Intent shopActivityIntent = new Intent(MainActivity.this, ShopActivity.class);
+                    startActivity(shopActivityIntent);
                 }
                 else
                     Toast.makeText(MainActivity.this, "Wrong password or name: "  + name + " " + password , Toast.LENGTH_SHORT).show();
