@@ -11,6 +11,7 @@ public class DataBaseAChanger {
         HashMap<String, String> user = new HashMap<>();
         user.put("Yohan", "1234");
         user.put("Xavier", "0123");
+        user.put("Thomas", "2004");
 
         if (user.containsKey(name)) {
             // Vérification si le mot de passe correspond
