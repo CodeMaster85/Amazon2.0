@@ -6,4 +6,11 @@ public class loginWindow {
     private JButton loginButton;
     private JButton cancelButton;
 
+
+    public loginWindow(){
+
+
+    }
+
+
 }
