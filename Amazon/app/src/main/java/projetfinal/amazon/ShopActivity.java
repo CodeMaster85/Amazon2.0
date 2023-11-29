@@ -3,7 +3,9 @@ package projetfinal.amazon;
 import android.app.ListActivity;
 import android.os.Bundle;
 
-public class ShopActivity extends ListActivity {
+import androidx.appcompat.app.AppCompatActivity;
+
+public class ShopActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

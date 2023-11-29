@@ -26,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(MainActivity.this, "lesgo", Toast.LENGTH_SHORT).show();
                     Intent shopActivityIntent = new Intent(MainActivity.this, ShopActivity.class);
                     startActivity(shopActivityIntent);
+                    // open new window
+                    // test push commit pull
                 }
                 else
                     Toast.makeText(MainActivity.this, "Wrong password or name: "  + name + " " + password , Toast.LENGTH_SHORT).show();
