@@ -1,2 +1,4 @@
 name password
 yohan 1234
+xavier 5678
+thomas 2510

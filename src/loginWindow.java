@@ -35,8 +35,13 @@ public class loginWindow extends JFrame{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
-
+//                if (Client.isUserExist(userNameTextField.getText(), passwordField1.getText()))
+//                {
+//                    principalWindow _principalWindow = new principalWindow();
+//                    _principalWindow.setVisible(true);
+//                }
+                    principalWindow _principalWindow = new principalWindow();
+                    _principalWindow.setVisible(true);
             }
         });
         createJLabel.addMouseListener(new MouseListener() {

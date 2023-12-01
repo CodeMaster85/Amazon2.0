@@ -1,13 +1,20 @@
 import javax.swing.*;
 
-public class principalWindow {
+public class principalWindow extends JFrame{
     private JButton signOutButton;
     private JLabel acceuilButtonLabel;
     private JLabel cartJLabel;
     private JPanel menuJPanel;
+    private JPanel pnlMain;
 
     public principalWindow()
     {
+        setContentPane(pnlMain);
+
+        setTitle("Create an account");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(400,600);
+        setLocationRelativeTo(null);
 
         ImageIcon icon = new ImageIcon("images/logoXYT.png");
         JLabel acceuilButtonLabel = new JLabel("", icon, SwingConstants.LEFT);
