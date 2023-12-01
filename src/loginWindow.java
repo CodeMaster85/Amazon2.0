@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -35,12 +36,17 @@ public class loginWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
 
+
             }
         });
         createJLabel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                createJLabel.setText("Go on Walmart");
+
+                createJLabel.setText("Go to Walmart");
+                //setVisible(false);
+                createAccountWindow accountWindow = new createAccountWindow();
+                accountWindow.setVisible(true);
             }
 
             @Override
@@ -55,12 +61,14 @@ public class loginWindow extends JFrame{
 
             @Override
             public void mouseEntered(MouseEvent e) {
-
+                createJLabel.setForeground(Color.BLUE);
+                createJLabel.setText("<html><u>" + "Create an account" + "</u></html>"); //Chat gpt pour savoir comment souligner
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
-
+                createJLabel.setForeground(Color.BLACK);
+                createJLabel.setText("Create an account");
             }
         });
     }
