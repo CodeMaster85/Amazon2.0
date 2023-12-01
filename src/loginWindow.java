@@ -12,13 +12,14 @@ public class loginWindow extends JFrame{
     private JButton cancelButton;
     private JPanel pnlMain;
     private JLabel createJLabel;
+    private JLabel errorJLabel;
 
 
     public loginWindow(){
 
         setContentPane(pnlMain);
 
-        setTitle("Login Amazon");
+        setTitle("Login XYT Express");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(400,250);
         setLocationRelativeTo(null);

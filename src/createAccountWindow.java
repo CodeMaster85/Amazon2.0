@@ -1,13 +1,8 @@
 import javax.swing.*;
-import javax.swing.text.AbstractDocument;
-import javax.swing.text.AttributeSet;
-import javax.swing.text.BadLocationException;
-import javax.swing.text.DocumentFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -60,7 +55,7 @@ public class createAccountWindow extends JFrame {
         });
         usernameTextField.addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) {
+            public void keyTyped(KeyEvent e) { //Chat GPT
                 if (e.getKeyChar() == ' ') {
                     e.consume(); // Empêche l'ajout de l'espace dans le JTextField
                 }
@@ -81,7 +76,6 @@ public class createAccountWindow extends JFrame {
                 setVisible(false);
             }
         });
-
     }
 
 }
