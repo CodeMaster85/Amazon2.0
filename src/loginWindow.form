@@ -99,7 +99,7 @@
         </constraints>
         <properties>
           <foreground color="-1769457"/>
-          <text value="Error"/>
+          <text value=""/>
         </properties>
       </component>
     </children>

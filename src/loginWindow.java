@@ -72,6 +72,13 @@ public class loginWindow extends JFrame{
                 createJLabel.setText("Create an account");
             }
         });
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                errorJLabel.setText("Error : Username or Password are wrong");
+            }
+        });
     }
 
 

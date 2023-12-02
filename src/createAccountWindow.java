@@ -26,12 +26,15 @@ public class createAccountWindow extends JFrame {
 
         setTitle("Create an account");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(400, 600);
+        setSize(600, 600);
         setLocationRelativeTo(null);
 
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+
+                errorJLabel.setText("");
+                errorJLabel2.setText("");
 
                 ArrayList<JTextField> textField = new ArrayList<>();
                 textField.add(firstNameTextField);
@@ -50,6 +53,10 @@ public class createAccountWindow extends JFrame {
                     }
                 }
 
+                if (errorJLabel.getText()=="" && errorJLabel2.getText()==""){
+                    JOptionPane.showMessageDialog(createAccountWindow.this, "Account created, We have sent you an Email confirmation");
+                    setVisible(false);
+                }
             }
 
         });
