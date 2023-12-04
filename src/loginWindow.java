@@ -30,6 +30,7 @@ public class loginWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 userNameTextField.setText("");
                 passwordField1.setText("");
+                errorJLabel.setText("");
             }
         });
 

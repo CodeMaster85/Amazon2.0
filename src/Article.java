@@ -10,5 +10,4 @@ public class Article {
         this.pathImage = _pathImage;
         this.remainingQuantity = _remainingQuantity;
     }
-
 }
