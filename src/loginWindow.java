@@ -12,13 +12,14 @@ public class loginWindow extends JFrame{
     private JButton cancelButton;
     private JPanel pnlMain;
     private JLabel createJLabel;
+    private JLabel errorJLabel;
 
 
     public loginWindow(){
 
         setContentPane(pnlMain);
 
-        setTitle("Login Amazon");
+        setTitle("Login XYT Express");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(400,250);
         setLocationRelativeTo(null);
@@ -29,6 +30,7 @@ public class loginWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 userNameTextField.setText("");
                 passwordField1.setText("");
+                errorJLabel.setText("");
             }
         });
 
@@ -74,6 +76,13 @@ public class loginWindow extends JFrame{
             public void mouseExited(MouseEvent e) {
                 createJLabel.setForeground(Color.BLACK);
                 createJLabel.setText("Create an account");
+            }
+        });
+
+        loginButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                errorJLabel.setText("Error : Username or Password are wrong");
             }
         });
     }
