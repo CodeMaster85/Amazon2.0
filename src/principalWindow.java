@@ -1,6 +1,6 @@
 import javax.swing.*;
 
-public class principalWindow {
+public class principalWindow extends JFrame{
     private JButton signOutButton;
     private JLabel acceuilButtonLabel;
     private JLabel cartJLabel;

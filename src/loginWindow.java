@@ -34,19 +34,12 @@ public class loginWindow extends JFrame{
             }
         });
 
-        loginButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-
-            }
-        });
         createJLabel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
 
                 createJLabel.setText("Go to Walmart");
-                //setVisible(false);
+                setVisible(false);
                 createAccountWindow accountWindow = new createAccountWindow();
                 accountWindow.setVisible(true);
             }
@@ -77,7 +70,17 @@ public class loginWindow extends JFrame{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                errorJLabel.setText("Error : Username or Password are wrong");
+                if (Client.isUserExist(userNameTextField.getText(), passwordField1.getText()))
+                {
+                    setVisible(false);
+                    principalWindow principal = new principalWindow();
+                    principal.setVisible(true);
+                }
+                else
+                {
+                    errorJLabel.setText("Error : Username or Password are wrong");
+                }
+
             }
         });
     }
