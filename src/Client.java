@@ -1,4 +1,4 @@
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
@@ -24,24 +24,46 @@ public class Client {
         MessageDigest md = MessageDigest.getInstance("MD5");
         byte[] passwdMD5ed = md.digest(passwdBytes); // where le hash == hash
         this.email = _email;
+        // add on database new client
 
-            // add on database new client
+        // sent email verification
+        // email = xytexpressshipping@gmail.com
+
+
+
     }
 
     static public boolean isUserExist(String _name, String _password)
     {
-            Scanner scanner = new Scanner("dataWish.txt"); // create a scanner to read in the file "myFile = notes.txt"
-            while(scanner.hasNext()) // while the file is not completed
-            {
-                String name = scanner.next(); // read the first string
-                if (name.equals(_name))
-                {
-                    if (scanner.next().equals(_password))
-                        return true;
+        File file = new File("Amazone2.0\\src\\dataWish.txt");
+        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
+            String ligne;
+
+            // Lire chaque ligne du fichier
+            while ((ligne = br.readLine()) != null) {
+                // Diviser la ligne en deux parties : nom et mot de passe
+                String[] parties = ligne.trim().split("\\s+");
+
+                // Vérifier si les informations correspondent à la demande
+                if (parties.length == 2 && parties[0].equals(_name) && parties[1].equals(_password)) {
+                    return true;
                 }
-                else
-                    scanner.nextLine();
-            };
-            return false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        return false;
     }
+//    public static boolean isValidEmailAddress(String email) {
+//        boolean result = true;
+//        try {
+//            InternetAddress emailAddr = new InternetAddress(email);
+//            emailAddr.validate();
+//        } catch (AddressException ex) {
+//            result = false;
+//        }
+//        return result;
+//    }
+
 }
