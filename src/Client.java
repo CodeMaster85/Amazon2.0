@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -30,18 +33,24 @@ public class Client {
 
     static public boolean isUserExist(String _name, String _password)
     {
-            Scanner scanner = new Scanner("dataWish.txt"); // create a scanner to read in the file "myFile = notes.txt"
-            while(scanner.hasNext()) // while the file is not completed
-            {
-                String name = scanner.next(); // read the first string
-                if (name.equals(_name))
-                {
-                    if (scanner.next().equals(_password))
-                        return true;
+        try (BufferedReader br = new BufferedReader(new FileReader("dataWish.txt"))) {
+            String ligne;
+
+            // Lire chaque ligne du fichier
+            while ((ligne = br.readLine()) != null) {
+                // Diviser la ligne en deux parties : nom et mot de passe
+                String[] parties = ligne.trim().split("\\s+");
+
+                // Vérifier si les informations correspondent à la demande
+                if (parties.length == 2 && parties[0].equals(_name) && parties[1].equals(_password)) {
+                    return true;
                 }
-                else
-                    scanner.nextLine();
-            };
-            return false;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        // Si aucune correspondance n'est trouvée, renvoyer false
+        return false;
     }
 }
