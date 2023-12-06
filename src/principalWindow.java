@@ -9,6 +9,8 @@ public class principalWindow {
     public principalWindow()
     {
 
+
+
         ImageIcon icon = new ImageIcon("images/logoXYT.png");
         JLabel acceuilButtonLabel = new JLabel("", icon, SwingConstants.LEFT);
 
