@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class loginWindow extends JFrame{
+public class LoginWindow extends JFrame{
     private JTextField userNameTextField;
     private JPasswordField passwordField1;
     private JButton loginButton;
@@ -15,7 +15,7 @@ public class loginWindow extends JFrame{
     private JLabel errorJLabel;
 
 
-    public loginWindow(){
+    public LoginWindow(){
 
         setContentPane(pnlMain);
 
@@ -40,7 +40,7 @@ public class loginWindow extends JFrame{
 
                 createJLabel.setText("Go to Walmart");
                 setVisible(false);
-                createAccountWindow accountWindow = new createAccountWindow();
+                CreateAccountWindow accountWindow = new CreateAccountWindow();
                 accountWindow.setVisible(true);
             }
 
@@ -73,7 +73,7 @@ public class loginWindow extends JFrame{
                 if (Client.isUserExist(userNameTextField.getText(), passwordField1.getText()))
                 {
                     setVisible(false);
-                    principalWindow principal = new principalWindow();
+                    PrincipalWindow principal = new PrincipalWindow();
                     principal.setVisible(true);
                 }
                 else

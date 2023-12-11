@@ -3,7 +3,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class createAccountWindow extends JFrame {
+public class CreateAccountWindow extends JFrame {
     private JPanel pnlMain;
     private JTextField firstNameTextField;
     private JTextField lastNameTextField;
@@ -18,7 +18,7 @@ public class createAccountWindow extends JFrame {
     private JLabel errorJLabel2;
 
 
-    public createAccountWindow() {
+    public CreateAccountWindow() {
         setContentPane(pnlMain);
 
         setTitle("Create an account");
@@ -51,7 +51,7 @@ public class createAccountWindow extends JFrame {
                 }
 
                 if (errorJLabel.getText()=="" && errorJLabel2.getText()==""){
-                    JOptionPane.showMessageDialog(createAccountWindow.this, "Account created, We have sent you an Email confirmation");
+                    JOptionPane.showMessageDialog(CreateAccountWindow.this, "Account created, We have sent you an Email confirmation");
                     setVisible(false);
                 }
             }

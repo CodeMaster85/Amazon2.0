@@ -1,25 +1,32 @@
 import javax.swing.*;
+import java.awt.*;
 
-public class principalWindow extends JFrame{
+public class PrincipalWindow extends JFrame{
+    private JPanel pnlMain;
     private JButton signOutButton;
     private JLabel acceuilButtonLabel;
     private JLabel cartJLabel;
     private JPanel menuJPanel;
 
-    public principalWindow()
+    public PrincipalWindow()
     {
+        //this.pnlMain = new JPanel();
+        setContentPane(pnlMain);
+
+        setTitle("Login XYT Express");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(800,500);
+        setLocationRelativeTo(null);
 
 
+        ImageIcon icon = new ImageIcon("Amazone2.0\\images\\logoXYT.png");
 
-        ImageIcon icon = new ImageIcon("images/logoXYT.png");
-        JLabel acceuilButtonLabel = new JLabel("", icon, SwingConstants.LEFT);
+        acceuilButtonLabel.setIcon(icon);
 
-        ImageIcon icon2 = new ImageIcon("\uD83D\uDED2");
-        JLabel cartJLabel = new JLabel("", icon2, SwingConstants.LEFT);
 
-        JPanel menuJPanel = new JPanel();
-        menuJPanel.add(acceuilButtonLabel);
-        menuJPanel.add(cartJLabel);
+        // Rendre la fenêtre visible
+        setVisible(true);
+
 
     }
 }
