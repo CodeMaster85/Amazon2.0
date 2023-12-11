@@ -12,5 +12,5 @@ Amazone2.0\images\Article1.jpg
 Article
 Rentable child cage
 449.99
-Amazone2.0\images\Article2.jpg
+Amazone2.0\images\Article2.png
 1

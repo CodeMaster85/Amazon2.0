@@ -13,14 +13,14 @@ public class PrincipalWindow extends JFrame{
 
     public PrincipalWindow()
     {
-        shopJPanel = new JPanel();
-        pnlMain = new JPanel();
+        shopJPanel = new JPanel(new GridLayout(0, 3)); // Utilisation de GridLayout avec 3 colonnes (ajuster selon vos besoins)
+        pnlMain = new JPanel(new BorderLayout());
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
         setContentPane(pnlMain);
 
         setTitle("Login XYT Express");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(800,500);
+        setSize(600,380);
         setLocationRelativeTo(null);
 
 
@@ -32,69 +32,82 @@ public class PrincipalWindow extends JFrame{
 
         ArrayList<Article> allArticle = Article.SearchAllArticle();
 
+        shopJPanel.setLayout(new BoxLayout(shopJPanel, BoxLayout.Y_AXIS)); // Utilisation de BoxLayout avec axe Y
+
+
         for (Article i : allArticle)
         {
-            shopJPanel.add(createArticlePanel(i));
+            JPanel articlePanel = createArticlePanel(i);
+            shopJPanel.add(articlePanel);
         }
 
 
-        pnlMain.add(menuJPanel);
-        pnlMain.add(shopJPanel);
+        pnlMain.add(menuJPanel, BorderLayout.NORTH);
+        pnlMain.add(shopJPanel, BorderLayout.SOUTH);
 
         setVisible(true);
 
 
     }
+    private JPanel createArticlePanel(Article article) {
+        JPanel articlePanel = new JPanel(new BorderLayout());
 
-//    private JPanel createArticlePanel(Article article) {
-//        JPanel articlePanel = new JPanel();
-//        articlePanel.setLayout(new GridLayout(1, 4));
+        // Ajouter l'image redimensionnée à gauche
+        ImageIcon icon = new ImageIcon(article.pathImage);
+        Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(scaledImage);
+        JLabel pathImageLabel = new JLabel(icon);
+
+        // Créer un panneau pour le nom, le prix et la quantité
+        JPanel infoPanel = new JPanel(new GridLayout(1, 3)); // Utilisation de GridLayout avec une seule ligne
+
+        // Ajouter le nom, le prix et la quantité au panneau d'informations
+        JLabel nameLabel = new JLabel(article.name);
+        JLabel priceLabel = new JLabel("\nPrix: $" + article.price);
+        JLabel quantityLabel = new JLabel("Quantité restante: " + article.remainingQuantity);
+
+        infoPanel.add(nameLabel);
+        infoPanel.add(priceLabel);
+        infoPanel.add(quantityLabel);
+
+        // Ajouter le panneau d'informations à droite du panneau principal
+        articlePanel.add(pathImageLabel, BorderLayout.WEST);
+        articlePanel.add(infoPanel, BorderLayout.SOUTH);
+
+        return articlePanel;
+    }
+
+
+//private JPanel createArticlePanel(Article article) {
+//    JPanel articlePanel = new JPanel(new BorderLayout());
 //
-//        // Ajouter les informations de l'article au panneau
-//        ImageIcon icon = new ImageIcon(article.pathImage);
-//        Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-//        icon = new ImageIcon(scaledImage);
-//        JLabel pathImageLabel = new JLabel(icon);
+//    // Ajouter l'image redimensionnée au centre
+//    ImageIcon icon = new ImageIcon(article.pathImage);
+//    Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
+//    icon = new ImageIcon(scaledImage);
+//    JLabel pathImageLabel = new JLabel(icon);
 //
-//        JLabel nameLabel = new JLabel(article.name);
-//        JLabel priceLabel = new JLabel("Prix: " + article.price);
 //
-//        JLabel quantityLabel = new JLabel("Quantité restante: " + article.remainingQuantity);
+//    // Créer un panneau pour le nom, le prix et la quantité
+//    JPanel infoPanel = new JPanel();
+//    infoPanel.setLayout(new GridLayout(3, 1));
 //
-//        articlePanel.add(nameLabel);
-//        articlePanel.add(priceLabel);
-//        articlePanel.add(pathImageLabel);
-//        articlePanel.add(quantityLabel);
+//    // Ajouter le nom, le prix et la quantité au panneau d'informations
+//    JLabel nameLabel = new JLabel(article.name);
+//    JLabel priceLabel = new JLabel("Prix: $" + article.price);
+//    JLabel quantityLabel = new JLabel("Quantité restante: " + article.remainingQuantity);
 //
-//        return articlePanel;
-//    }
-private JPanel createArticlePanel(Article article) {
-    JPanel articlePanel = new JPanel(new BorderLayout());
+//    //articlePanel.add(pathImageLabel, BorderLayout.CENTER);
+//    infoPanel.add(pathImageLabel, BorderLayout.NORTH);
+//    infoPanel.add(nameLabel);
+//    infoPanel.add(priceLabel);
+//    infoPanel.add(quantityLabel);
+//
+//    // Ajouter le panneau d'informations au côté est du panneau principal
+//    articlePanel.add(infoPanel, BorderLayout.WEST);
+//
+//    return articlePanel;
+//}
 
-    // Ajouter l'image redimensionnée au centre
-    ImageIcon icon = new ImageIcon(article.pathImage);
-    Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-    icon = new ImageIcon(scaledImage);
-    JLabel pathImageLabel = new JLabel(icon);
-    articlePanel.add(pathImageLabel, BorderLayout.CENTER);
-
-    // Créer un panneau pour le nom, le prix et la quantité
-    JPanel infoPanel = new JPanel();
-    infoPanel.setLayout(new GridLayout(3, 1));
-
-    // Ajouter le nom, le prix et la quantité au panneau d'informations
-    JLabel nameLabel = new JLabel(article.name);
-    JLabel priceLabel = new JLabel("Prix: $" + article.price);
-    JLabel quantityLabel = new JLabel("Quantité restante: " + article.remainingQuantity);
-
-    infoPanel.add(nameLabel);
-    infoPanel.add(priceLabel);
-    infoPanel.add(quantityLabel);
-
-    // Ajouter le panneau d'informations au côté est du panneau principal
-    articlePanel.add(infoPanel, BorderLayout.EAST);
-
-    return articlePanel;
 }
 
-}
