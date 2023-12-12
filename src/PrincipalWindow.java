@@ -12,12 +12,13 @@ public class PrincipalWindow extends JFrame{
     private JPanel menuJPanel;
     private JPanel shopJPanel;
     private JList allArticleList;
-    private JComboBox<String> categoryComboBox = new JComboBox<String>();
+    private JComboBox categoryComboBox;
     private JLabel whiteSpace2JLable;
     private JLabel whiteSpace1JLable;
 
     public PrincipalWindow()
     {
+
         ArrayList<String> category = new ArrayList<>();
         category.add("All");
         category.add("Fashion");
@@ -35,10 +36,9 @@ public class PrincipalWindow extends JFrame{
             categoryComboBox.addItem(s);
         }
         categoryComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
+                                               @Override
+                                               public void actionPerformed(ActionEvent e) {
+                                               }
         });
         signOutButton.addActionListener(new ActionListener() {
             @Override
@@ -50,7 +50,6 @@ public class PrincipalWindow extends JFrame{
         });
 //        shopJPanel = new JPanel(new GridLayout(0, 3)); // Utilisation de GridLayout avec 3 colonnes (ajuster selon vos besoins)
         pnlMain = new JPanel(new BorderLayout());
-        menuJPanel = new JPanel();
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
         setContentPane(pnlMain);
 
@@ -78,7 +77,7 @@ public class PrincipalWindow extends JFrame{
         JScrollPane scrollPane = new JScrollPane(articleList);
 
 
-        menuJPanel.add(categoryComboBox);
+
         pnlMain.add(menuJPanel, BorderLayout.NORTH);
         pnlMain.add(scrollPane, BorderLayout.WEST);
 
