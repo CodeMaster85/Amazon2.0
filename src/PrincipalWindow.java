@@ -9,11 +9,14 @@ public class PrincipalWindow extends JFrame{
     private JLabel cartJLabel;
     private JPanel menuJPanel;
     private JPanel shopJPanel;
-    private JScrollBar scrollBar1;
+    private JList allArticleList;
+    private JLabel whiteSpace2JLable;
+    private JLabel whiteSpace1JLable;
 
     public PrincipalWindow()
     {
-        shopJPanel = new JPanel(new GridLayout(0, 3)); // Utilisation de GridLayout avec 3 colonnes (ajuster selon vos besoins)
+
+//        shopJPanel = new JPanel(new GridLayout(0, 3)); // Utilisation de GridLayout avec 3 colonnes (ajuster selon vos besoins)
         pnlMain = new JPanel(new BorderLayout());
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
         setContentPane(pnlMain);
@@ -31,40 +34,48 @@ public class PrincipalWindow extends JFrame{
 
 
         ArrayList<Article> allArticle = Article.SearchAllArticle();
+        DefaultListModel<Article> listModel = new DefaultListModel<>();
 
-        shopJPanel.setLayout(new BoxLayout(shopJPanel, BoxLayout.Y_AXIS)); // Utilisation de BoxLayout avec axe Y
-
-
-        for (Article i : allArticle)
-        {
-            JPanel articlePanel = createArticlePanel(i);
-            shopJPanel.add(articlePanel);
+        for (Article i : allArticle) {
+            listModel.addElement(i);
         }
+
+        JList<Article> articleList = new JList<>(listModel);
+        articleList.setCellRenderer(createArticleListCellRenderer());
+        JScrollPane scrollPane = new JScrollPane(articleList);
+
 
 
         pnlMain.add(menuJPanel, BorderLayout.NORTH);
-        pnlMain.add(shopJPanel, BorderLayout.SOUTH);
+        pnlMain.add(scrollPane, BorderLayout.WEST);
 
         setVisible(true);
 
 
     }
+    // modify and create Article
+    // use this function to refactor the element on the list
     private JPanel createArticlePanel(Article article) {
         JPanel articlePanel = new JPanel(new BorderLayout());
+        int borderSize = 5;
+        articlePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE)); // Ajoute une bordure noire
 
-        // Ajouter l'image redimensionnée à gauche
         ImageIcon icon = new ImageIcon(article.pathImage);
         Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
         icon = new ImageIcon(scaledImage);
         JLabel pathImageLabel = new JLabel(icon);
 
         // Créer un panneau pour le nom, le prix et la quantité
-        JPanel infoPanel = new JPanel(new GridLayout(1, 3)); // Utilisation de GridLayout avec une seule ligne
+        JPanel infoPanel = new JPanel(new GridLayout(3, 3)); // Utilisation de GridLayout avec une seule ligne
 
         // Ajouter le nom, le prix et la quantité au panneau d'informations
         JLabel nameLabel = new JLabel(article.name);
-        JLabel priceLabel = new JLabel("\nPrix: $" + article.price);
-        JLabel quantityLabel = new JLabel("Quantité restante: " + article.remainingQuantity);
+        JLabel priceLabel = new JLabel("Price: $" + article.price);
+        JLabel quantityLabel = new JLabel("Remaining quantity: " + article.remainingQuantity );
+
+
+
+
 
         infoPanel.add(nameLabel);
         infoPanel.add(priceLabel);
@@ -76,38 +87,34 @@ public class PrincipalWindow extends JFrame{
 
         return articlePanel;
     }
+    // modify and create list
+    // use this function to refactor the  list
+    private ListCellRenderer<? super Article> createArticleListCellRenderer() {
+        return new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                if (!(value instanceof Article)) {
+                    return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+                }
+
+                Article article = (Article) value;
+                JPanel articlePanel = createArticlePanel(article);
+
+                if (isSelected) {
+                    articlePanel.setBackground(list.getSelectionBackground());
+                    articlePanel.setForeground(list.getSelectionForeground());
+                } else {
+                    articlePanel.setBackground(list.getBackground());
+                    articlePanel.setForeground(list.getForeground());
+                }
+
+                return articlePanel;
+            }
+        };
+    }
 
 
-//private JPanel createArticlePanel(Article article) {
-//    JPanel articlePanel = new JPanel(new BorderLayout());
-//
-//    // Ajouter l'image redimensionnée au centre
-//    ImageIcon icon = new ImageIcon(article.pathImage);
-//    Image scaledImage = icon.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH);
-//    icon = new ImageIcon(scaledImage);
-//    JLabel pathImageLabel = new JLabel(icon);
-//
-//
-//    // Créer un panneau pour le nom, le prix et la quantité
-//    JPanel infoPanel = new JPanel();
-//    infoPanel.setLayout(new GridLayout(3, 1));
-//
-//    // Ajouter le nom, le prix et la quantité au panneau d'informations
-//    JLabel nameLabel = new JLabel(article.name);
-//    JLabel priceLabel = new JLabel("Prix: $" + article.price);
-//    JLabel quantityLabel = new JLabel("Quantité restante: " + article.remainingQuantity);
-//
-//    //articlePanel.add(pathImageLabel, BorderLayout.CENTER);
-//    infoPanel.add(pathImageLabel, BorderLayout.NORTH);
-//    infoPanel.add(nameLabel);
-//    infoPanel.add(priceLabel);
-//    infoPanel.add(quantityLabel);
-//
-//    // Ajouter le panneau d'informations au côté est du panneau principal
-//    articlePanel.add(infoPanel, BorderLayout.WEST);
-//
-//    return articlePanel;
-//}
+
 
 }
 
