@@ -31,8 +31,8 @@ public class PrincipalWindow extends JFrame{
         category.add("Car");
         category.add("Furnitures");
         //categoryComboBox = new JComboBox<String>();
-        for (int i = 0; i < category.size() ; i++){
-            categoryComboBox.addItem(category.get(i));
+        for (String s : category) {
+            categoryComboBox.addItem(s);
         }
         categoryComboBox.addActionListener(new ActionListener() {
             @Override
