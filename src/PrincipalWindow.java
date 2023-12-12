@@ -18,7 +18,7 @@ public class PrincipalWindow extends JFrame{
 
     public PrincipalWindow()
     {
-        List category = new List();
+        ArrayList<String> category = new ArrayList<>();
         category.add("All");
         category.add("Fashion");
         category.add("Sport");
@@ -30,10 +30,10 @@ public class PrincipalWindow extends JFrame{
         category.add("Gift cards");
         category.add("Car");
         category.add("Furnitures");
-        //JComboBox<String> comboBox = new JComboBox<String>();
-       // for (int i = 0; i < category;i++){
-        //    categoryComboBox.add(category.getItem(i));
-       // }
+        //categoryComboBox = new JComboBox<String>();
+        for (int i = 0; i < category.size() ; i++){
+            categoryComboBox.addItem(category.get(i));
+        }
         categoryComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -50,6 +50,7 @@ public class PrincipalWindow extends JFrame{
         });
 //        shopJPanel = new JPanel(new GridLayout(0, 3)); // Utilisation de GridLayout avec 3 colonnes (ajuster selon vos besoins)
         pnlMain = new JPanel(new BorderLayout());
+        menuJPanel = new JPanel();
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
         setContentPane(pnlMain);
 
@@ -77,7 +78,7 @@ public class PrincipalWindow extends JFrame{
         JScrollPane scrollPane = new JScrollPane(articleList);
 
 
-
+        menuJPanel.add(categoryComboBox);
         pnlMain.add(menuJPanel, BorderLayout.NORTH);
         pnlMain.add(scrollPane, BorderLayout.WEST);
 
