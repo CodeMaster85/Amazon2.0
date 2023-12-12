@@ -33,12 +33,13 @@ public class PrincipalWindow extends JFrame{
         category.add("Furnitures");
         //categoryComboBox = new JComboBox<String>();
         for (String s : category) {
-            categoryComboBox.addItem(s);
+            categoryComboBox.addItem("- "+ s);
         }
         categoryComboBox.addActionListener(new ActionListener() {
-                                               @Override
-                                               public void actionPerformed(ActionEvent e) {
-                                               }
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
         });
         signOutButton.addActionListener(new ActionListener() {
             @Override
