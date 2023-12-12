@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class PrincipalWindow extends JFrame{
@@ -10,12 +12,21 @@ public class PrincipalWindow extends JFrame{
     private JPanel menuJPanel;
     private JPanel shopJPanel;
     private JList allArticleList;
+    private JComboBox comboBox1;
     private JLabel whiteSpace2JLable;
     private JLabel whiteSpace1JLable;
 
     public PrincipalWindow()
     {
 
+        signOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                LoginWindow loginWindow = new LoginWindow();
+                loginWindow.setVisible(true);
+            }
+        });
 //        shopJPanel = new JPanel(new GridLayout(0, 3)); // Utilisation de GridLayout avec 3 colonnes (ajuster selon vos besoins)
         pnlMain = new JPanel(new BorderLayout());
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
@@ -111,6 +122,7 @@ public class PrincipalWindow extends JFrame{
                 return articlePanel;
             }
         };
+
     }
 
 
