@@ -44,9 +44,13 @@ public class PrincipalWindow extends JFrame{
         signOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                LoginWindow loginWindow = new LoginWindow();
-                loginWindow.setVisible(true);
+                int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (option == JOptionPane.YES_OPTION) {
+                    // L'utilisateur a choisi "Yes", vous pouvez ajouter ici le code pour déconnecter l'utilisateur
+                    setVisible(false);
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.setVisible(true);
+                }
             }
         });
 //        shopJPanel = new JPanel(new GridLayout(0, 3)); // Utilisation de GridLayout avec 3 colonnes (ajuster selon vos besoins)
