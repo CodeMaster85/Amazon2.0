@@ -35,7 +35,7 @@ public class Client {
 
     static public boolean isUserExist(String _name, String _password)
     {
-        File file = new File("Amazone2.0\\src\\dataWish.txt");
+        File file = new File("Amazon2.0\\src\\dataWish.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String ligne;
 
