@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +17,7 @@ public class CreateAccountWindow extends JFrame {
     private JLabel firstNameLabel;
     private JPasswordField confirmPasswordTextField;
     private JLabel errorJLabel2;
+    private JLabel titleJLabel;
 
 
     public CreateAccountWindow() {
@@ -26,6 +28,7 @@ public class CreateAccountWindow extends JFrame {
         setSize(600, 600);
         setLocationRelativeTo(null);
 
+        //titleJLabel.setFont(20);
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

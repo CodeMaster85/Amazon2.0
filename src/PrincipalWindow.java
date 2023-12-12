@@ -12,13 +12,32 @@ public class PrincipalWindow extends JFrame{
     private JPanel menuJPanel;
     private JPanel shopJPanel;
     private JList allArticleList;
-    private JComboBox comboBox1;
+    private JComboBox<String> categoryComboBox = new JComboBox<String>();
     private JLabel whiteSpace2JLable;
     private JLabel whiteSpace1JLable;
 
     public PrincipalWindow()
     {
+        List category = new List();
+        category.add("All");
+        category.add("Fashion");
+        category.add("Sport");
+        category.add("Tech");
+        category.add("Kitchen");
+        category.add("Animals");
+        category.add("Toys");
+        category.add("Vidéo games");
+        category.add("Gift cards");
+        category.add("Car");
+        category.add("Furnitures");
+        //JComboBox<String> comboBox = new JComboBox<String>();
 
+        categoryComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
         signOutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
