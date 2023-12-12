@@ -26,8 +26,8 @@ public class PrincipalWindow extends JFrame{
         setSize(600,380);
         setLocationRelativeTo(null);
 
-
-        ImageIcon icon = new ImageIcon("Amazone2.0\\images\\logoXYT.png");
+        //C:\GIT\XYTExpress\Amazon2.0\images
+        ImageIcon icon = new ImageIcon("Amazon2.0\\images\\logoXYT.png");
         Image scaledImage = icon.getImage().getScaledInstance(61, 37, Image.SCALE_SMOOTH);
         icon = new ImageIcon(scaledImage);
         acceuilButtonLabel.setIcon(icon);

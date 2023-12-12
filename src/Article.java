@@ -21,7 +21,7 @@ public class Article {
     {
         ArrayList<Article> item = new ArrayList<>();
 
-        File file = new File("Amazone2.0\\src\\dataWish.txt");
+        File file = new File("Amazon2.0\\src\\dataWish.txt");
         try (BufferedReader br = new BufferedReader(new FileReader(file))) {
             String ligne;
             while ((ligne = br.readLine()) != null)
