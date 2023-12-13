@@ -10,11 +10,14 @@ public class Article {
     String pathImage; 
     int remainingQuantity;
 
-    public Article(String _name, double _price, String _pathImage, int _remainingQuantity ) {
+    ArrayList<String> category = new ArrayList<>();
+
+    public Article(String _name, double _price, String _pathImage, int _remainingQuantity, ArrayList<String> _category) {
         this.name = _name;
         this.price = _price;
         this.pathImage = _pathImage;
         this.remainingQuantity = _remainingQuantity;
+        this.category = _category;
     }
 
     public static ArrayList<Article> SearchAllArticle()
@@ -32,7 +35,9 @@ public class Article {
                     double price = Double.parseDouble(br.readLine());
                     String pathImage = br.readLine();
                     int remainingQuantity = Integer.parseInt(br.readLine());
-                    item.add(new Article(name, price, pathImage, remainingQuantity));
+                    ArrayList<String> category = new ArrayList<>();
+                    category.add("Tech");
+                    item.add(new Article(name, price, pathImage, remainingQuantity, category));
                 }
             }
         } catch (IOException e) {

@@ -26,6 +26,28 @@ public class PrincipalWindow extends JFrame{
         setSize(600,380);
         setLocationRelativeTo(null);
 
+        pnlMain = new JPanel(new BorderLayout());
+        pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
+        setContentPane(pnlMain);
+
+        ImageIcon icon = new ImageIcon("Amazon2.0\\images\\logoXYT.png");
+        Image scaledImage = icon.getImage().getScaledInstance(61, 37, Image.SCALE_SMOOTH);
+        icon = new ImageIcon(scaledImage);
+        acceuilButtonLabel.setIcon(icon);
+
+
+        ArrayList<Article> allArticle = Article.SearchAllArticle();
+        DefaultListModel<Article> listModel = new DefaultListModel<>();
+
+        for (Article i : allArticle) {
+            listModel.addElement(i);
+        }
+
+        JList<Article> articleList = new JList<>(listModel);
+        articleList.setCellRenderer(createArticleListCellRenderer());
+        JScrollPane scrollPane = new JScrollPane(articleList);
+
+
         ArrayList<String> category = new ArrayList<>();
         category.add("All");
         category.add("Fashion");
@@ -42,6 +64,25 @@ public class PrincipalWindow extends JFrame{
         for (String s : category) {
             categoryComboBox.addItem("- "+ s);
         }
+        categoryComboBox.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                listModel.clear();
+                changeItem(categoryComboBox.getSelectedItem().toString(), listModel, scrollPane);
+            }
+        });
+        signOutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
+                if (option == JOptionPane.YES_OPTION) {
+                    // L'utilisateur a choisi "Yes", vous pouvez ajouter ici le code pour déconnecter l'utilisateur
+                    setVisible(false);
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.setVisible(true);
+                }
+            }
+        });
         cartJLabel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -72,52 +113,6 @@ public class PrincipalWindow extends JFrame{
                 cartJLabel.setText("Cart");
             }
         });
-
-        categoryComboBox.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-            }
-        });
-        signOutButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
-                if (option == JOptionPane.YES_OPTION) {
-                    // L'utilisateur a choisi "Yes", vous pouvez ajouter ici le code pour déconnecter l'utilisateur
-                    setVisible(false);
-                    LoginWindow loginWindow = new LoginWindow();
-                    loginWindow.setVisible(true);
-                }
-            }
-        });
-//        shopJPanel = new JPanel(new GridLayout(0, 3)); // Utilisation de GridLayout avec 3 colonnes (ajuster selon vos besoins)
-        pnlMain = new JPanel(new BorderLayout());
-        pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
-        setContentPane(pnlMain);
-
-
-
-
-        //C:\GIT\XYTExpress\Amazon2.0\images
-        ImageIcon icon = new ImageIcon("Amazon2.0\\images\\logoXYT.png");
-        Image scaledImage = icon.getImage().getScaledInstance(61, 37, Image.SCALE_SMOOTH);
-        icon = new ImageIcon(scaledImage);
-        acceuilButtonLabel.setIcon(icon);
-
-
-        ArrayList<Article> allArticle = Article.SearchAllArticle();
-        DefaultListModel<Article> listModel = new DefaultListModel<>();
-
-        for (Article i : allArticle) {
-            listModel.addElement(i);
-        }
-
-        JList<Article> articleList = new JList<>(listModel);
-        articleList.setCellRenderer(createArticleListCellRenderer());
-        JScrollPane scrollPane = new JScrollPane(articleList);
-
-
 
         pnlMain.add(menuJPanel, BorderLayout.NORTH);
         pnlMain.add(scrollPane, BorderLayout.WEST);
@@ -187,7 +182,26 @@ public class PrincipalWindow extends JFrame{
 
     }
 
+    private void changeItem(String category, DefaultListModel<Article> listModel, JScrollPane scrollPane) {
+        ArrayList<Article> allArticle = Article.SearchAllArticle();
+        if (category.equals("- All")) {
+            for (Article i : allArticle) {
+                listModel.addElement(i);
+            }
+        } else
+        {
+            for (Article i : allArticle) {
+                for (String categoriItem : i.category) {
+                    if (("- " + categoriItem).equals(category))
+                        listModel.addElement(i);
+                }
+            }
+        }
+        JList<Article> articleList = new JList<>(listModel);
+        articleList.setCellRenderer(createArticleListCellRenderer());
 
+        scrollPane.setViewportView(articleList);
+    }
 
 
 }
