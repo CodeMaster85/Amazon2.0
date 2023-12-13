@@ -28,7 +28,7 @@ public class CreateAccountWindow extends JFrame {
         setSize(600, 600);
         setLocationRelativeTo(null);
 
-        titleJLabel.setFont(new Font("Arial", Font.PLAIN,25));
+        titleJLabel.setFont(new Font("Arial", Font.BOLD,25));
         createAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

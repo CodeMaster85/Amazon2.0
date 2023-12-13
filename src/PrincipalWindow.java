@@ -72,6 +72,7 @@ public class PrincipalWindow extends JFrame{
                 cartJLabel.setText("Cart");
             }
         });
+
         categoryComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {

@@ -19,7 +19,16 @@ public class CartWindow extends JFrame{
         setSize(600, 600);
         setLocationRelativeTo(null);
 
-        cartTitleJLabel.setFont(new Font("Pokemon",Font.PLAIN,20));
+        cartTitleJLabel.setFont(new Font("Pokemon",Font.BOLD,20));
+
+        checkoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                setVisible(false);
+                CheckoutWindow checkoutWindow = new CheckoutWindow();
+                checkoutWindow.setVisible(true);
+            }
+        });
         homePageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
