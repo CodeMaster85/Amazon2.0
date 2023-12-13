@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 
 public class PrincipalWindow extends JFrame{
@@ -18,6 +20,11 @@ public class PrincipalWindow extends JFrame{
 
     public PrincipalWindow()
     {
+        setContentPane(pnlMain);
+        setTitle("XYTExpress.com");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(600,380);
+        setLocationRelativeTo(null);
 
         ArrayList<String> category = new ArrayList<>();
         category.add("All");
@@ -27,7 +34,7 @@ public class PrincipalWindow extends JFrame{
         category.add("Kitchen");
         category.add("Animals");
         category.add("Toys");
-        category.add("Vidéo games");
+        category.add("Video games");
         category.add("Gift cards");
         category.add("Car");
         category.add("Furnitures");
@@ -35,6 +42,36 @@ public class PrincipalWindow extends JFrame{
         for (String s : category) {
             categoryComboBox.addItem("- "+ s);
         }
+        cartJLabel.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                setVisible(false);
+                CartWindow cartWindow = new CartWindow();
+                cartWindow.setVisible(true);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                cartJLabel.setForeground(Color.BLUE);
+                cartJLabel.setText("<html><u>" + "Cart" + "</u></html>");
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                cartJLabel.setForeground(Color.BLACK);
+                cartJLabel.setText("Cart");
+            }
+        });
         categoryComboBox.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -58,10 +95,8 @@ public class PrincipalWindow extends JFrame{
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
         setContentPane(pnlMain);
 
-        setTitle("Login XYT Express");
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(600,380);
-        setLocationRelativeTo(null);
+
+
 
         //C:\GIT\XYTExpress\Amazon2.0\images
         ImageIcon icon = new ImageIcon("Amazon2.0\\images\\logoXYT.png");
