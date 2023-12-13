@@ -36,7 +36,7 @@ public class PrincipalWindow extends JFrame{
         acceuilButtonLabel.setIcon(icon);
 
 
-        ArrayList<Article> allArticle = Article.SearchAllArticle();
+        ArrayList<Article> allArticle = DBO.SearchAllArticle();
         DefaultListModel<Article> listModel = new DefaultListModel<>();
 
         for (Article i : allArticle) {
@@ -56,8 +56,8 @@ public class PrincipalWindow extends JFrame{
         category.add("Kitchen");
         category.add("Animals");
         category.add("Toys");
-        category.add("Video games");
-        category.add("Gift cards");
+        category.add("Video-games");
+        category.add("Gift-cards");
         category.add("Car");
         category.add("Furnitures");
 
@@ -183,7 +183,7 @@ public class PrincipalWindow extends JFrame{
     }
 
     private void changeItem(String category, DefaultListModel<Article> listModel, JScrollPane scrollPane) {
-        ArrayList<Article> allArticle = Article.SearchAllArticle();
+        ArrayList<Article> allArticle = DBO.SearchAllArticle();
         if (category.equals("- All")) {
             for (Article i : allArticle) {
                 listModel.addElement(i);

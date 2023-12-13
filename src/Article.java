@@ -19,32 +19,4 @@ public class Article {
         this.remainingQuantity = _remainingQuantity;
         this.category = _category;
     }
-
-    public static ArrayList<Article> SearchAllArticle()
-    {
-        ArrayList<Article> item = new ArrayList<>();
-
-        File file = new File("Amazon2.0\\src\\dataWish.txt");
-        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-            String ligne;
-            while ((ligne = br.readLine()) != null)
-            {
-                if (ligne.equals("Article"))
-                {
-                    String name = br.readLine();
-                    double price = Double.parseDouble(br.readLine());
-                    String pathImage = br.readLine();
-                    int remainingQuantity = Integer.parseInt(br.readLine());
-                    ArrayList<String> category = new ArrayList<>();
-                    category.add("Tech");
-                    item.add(new Article(name, price, pathImage, remainingQuantity, category));
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return item;
-
-    }
 }

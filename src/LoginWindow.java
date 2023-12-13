@@ -71,7 +71,7 @@ public class LoginWindow extends JFrame{
         loginButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (Client.isUserExist(userNameTextField.getText(), passwordField1.getText()))
+                if (DBO.isUserExist(userNameTextField.getText(), passwordField1.getText()))
                 {
                     setVisible(false);
                     PrincipalWindow principal = new PrincipalWindow();
