@@ -60,7 +60,7 @@ public class PrincipalWindow extends JFrame{
         category.add("Gift cards");
         category.add("Car");
         category.add("Furnitures");
-        //categoryComboBox = new JComboBox<String>();
+
         for (String s : category) {
             categoryComboBox.addItem("- "+ s);
         }
@@ -86,9 +86,9 @@ public class PrincipalWindow extends JFrame{
         cartJLabel.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                setVisible(false);
                 CartWindow cartWindow = new CartWindow();
                 cartWindow.setVisible(true);
+                setVisible(false);
             }
 
             @Override

@@ -4,21 +4,26 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
 
 public class CheckoutWindow extends JFrame {
     private JPanel pnlMain;
     private JLabel checkoutJLabel;
     private JTextField creditCardTextField;
-    private JComboBox comboBox1;
-    private JComboBox comboBox2;
+    private JComboBox monthComboBox;
+    private JComboBox yearComboBox;
     private JButton orderButton;
     private JButton cancelButton;
+    private JTextField crcTextField;
+    private JTextField adressTextField;
+    private JTextField ownerTextField;
+    private JLabel errorJLabel;
 
     public CheckoutWindow(){
         setContentPane(pnlMain);
         setTitle("XYTExpress.com");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
-        setSize(400,250);
+        setSize(400,350);
         setLocationRelativeTo(null);
 
         checkoutJLabel.setFont(new Font("Arial", Font.BOLD,25));
@@ -55,6 +60,27 @@ public class CheckoutWindow extends JFrame {
 
             @Override
             public void keyReleased(KeyEvent e) {
+
+            }
+        });
+        orderButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                ArrayList<JTextField> textField = new ArrayList<>();
+                textField.add(ownerTextField);
+                textField.add(creditCardTextField);
+                textField.add(crcTextField);
+                textField.add(adressTextField);
+
+                for(JTextField i : textField){
+                    if (i.getText().isEmpty()) {
+                        errorJLabel.setText("Error : Please complete all the tabs");
+                    }
+                    else {
+                        //order summary is visible
+                    }
+                }
 
             }
         });
