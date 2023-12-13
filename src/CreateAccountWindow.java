@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -54,7 +55,14 @@ public class CreateAccountWindow extends JFrame {
                 }
 
                 if (errorJLabel.getText()=="" && errorJLabel2.getText()==""){
+                    try {
+                        DBO.addUser(usernameTextField.getText().toString(), passwordTextField.getPassword().toString());
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
                     JOptionPane.showMessageDialog(CreateAccountWindow.this, "Account created, We have sent you an Email confirmation");
+                    LoginWindow loginWindow = new LoginWindow();
+                    loginWindow.setVisible(true);
                     setVisible(false);
                 }
             }
