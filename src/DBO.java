@@ -71,7 +71,7 @@ public class DBO {
                 while ((line = br.readLine()) != null) {
                     if (line.isEmpty() && !foundEmptyLine) {
                         // Ajouter la nouvelle ligne à la première ligne vide
-                        lines.add(userName + " " + password);
+                        lines.add(userName + " " + password + "\n");
                         foundEmptyLine = true;
                     } else {
                         lines.add(line);
@@ -95,12 +95,5 @@ public class DBO {
             }
         }
 
-        public static void main(String[] args) {
-            try {
-                addUser("nouvelUtilisateur", "nouveauMotDePasse");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 }
 
