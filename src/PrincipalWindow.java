@@ -47,6 +47,21 @@ public class PrincipalWindow extends JFrame{
         articleList.setCellRenderer(createArticleListCellRenderer());
         JScrollPane scrollPane = new JScrollPane(articleList);
         changeItem("All", listModel);
+        int size = articleList.getModel().getSize();
+
+        ArrayList<Article> articlesInCart = new ArrayList<>();
+
+        JButton addToCartButton = new JButton("Add to Cart");
+        addToCartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                Article selectedArticle = articleList.getSelectedValue();
+                if (selectedArticle != null) {
+                    articlesInCart.add(selectedArticle); // Ajoutez l'article au panier
+                }
+            }
+        });
+
 
 
         // create a combo box search
@@ -84,7 +99,7 @@ public class PrincipalWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 int option = JOptionPane.showConfirmDialog(null, "Are you sure you want to log out?", "Logout Confirmation", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE);
                 if (option == JOptionPane.YES_OPTION) {
-                    // L'utilisateur a choisi "Yes", vous pouvez ajouter ici le code pour déconnecter l'utilisateur
+                    // L'utilisateur a choisi "Yes"
                     setVisible(false);
                     LoginWindow loginWindow = new LoginWindow();
                     loginWindow.setVisible(true);
@@ -184,7 +199,16 @@ public class PrincipalWindow extends JFrame{
                     articlePanel.setBackground(list.getBackground());
                     articlePanel.setForeground(list.getForeground());
                 }
+                ArrayList<Article> articlesInCart = new ArrayList<>();
+                JButton addToCartButton = new JButton("Add to Cart");
+                addToCartButton.addActionListener(new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        articlesInCart.add(article); // Ajoutez l'article au panier
+                    }
+                });
 
+                articlePanel.add(addToCartButton, BorderLayout.EAST);
                 return articlePanel;
             }
         };
