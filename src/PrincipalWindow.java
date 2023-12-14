@@ -56,10 +56,12 @@ public class PrincipalWindow extends JFrame{
         category.add("Tech");
         category.add("Kitchen");
         category.add("Animals");
+        category.add("School");
+        category.add("Pharmacy");
         category.add("Toys");
         category.add("Video-games");
         category.add("Music");
-        category.add("Gift-cards");
+        category.add("Gift cards");
         category.add("Car");
         category.add("Furnitures");
         for (String s : category) {
