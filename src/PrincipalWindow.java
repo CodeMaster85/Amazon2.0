@@ -119,6 +119,7 @@ public class PrincipalWindow extends JFrame{
             }
         });
 
+
         pnlMain.add(menuJPanel, BorderLayout.NORTH);
         pnlMain.add(scrollPane, BorderLayout.WEST);
 
@@ -146,22 +147,23 @@ public class PrincipalWindow extends JFrame{
         JLabel priceLabel = new JLabel("Price: $" + article.price);
         JLabel quantityLabel = new JLabel("Remaining quantity: " + article.remainingQuantity );
 
-        JButton addItemInCart = new JButton("Add to cart");
-
-        addItemInCart.addActionListener(new ActionListener() {
+        JButton addToCartButton = new JButton("Add to Cart");
+        addToCartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                // Ajouter l'article au panier
                 itemInCart.add(article);
+                JOptionPane.showMessageDialog(null, "Article ajouté au panier : " + article.name);
             }
         });
 
-        //infoPanel.add(addItemInCart);
+        infoPanel.add(addToCartButton);
+
         infoPanel.add(nameLabel);
         infoPanel.add(priceLabel);
         infoPanel.add(quantityLabel);
 
         // Ajouter le panneau d'informations à droite du panneau principal
-        articlePanel.add(addItemInCart, BorderLayout.EAST);
         articlePanel.add(pathImageLabel, BorderLayout.WEST);
         articlePanel.add(infoPanel, BorderLayout.SOUTH);
 
