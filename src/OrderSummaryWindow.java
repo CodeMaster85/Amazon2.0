@@ -8,8 +8,9 @@ public class OrderSummaryWindow extends JFrame {
     private JLabel competeJLabel;
     private JLabel summaryJLabel;
     private JButton homePageButton;
+    private JLabel orderInfoLabel;
 
-    public OrderSummaryWindow(){
+    public OrderSummaryWindow(double price){
 
         setContentPane(pnlMain);
         setTitle("XYTExpress.com");
@@ -19,7 +20,8 @@ public class OrderSummaryWindow extends JFrame {
 
         competeJLabel.setFont(new Font("Arial", Font.BOLD,20));
         summaryJLabel.setFont(new Font("Arial",Font.BOLD,15));
-
+        String orderInfo = "<html>price : " + price + "$" + "<br/>your command will be delivered in less than a year!!!! (maybe not!)</html>";
+        orderInfoLabel.setText(orderInfo);
 
         homePageButton.addActionListener(new ActionListener() {
             @Override
