@@ -51,6 +51,7 @@ public class PrincipalWindow extends JFrame{
         category.add("All");
         category.add("Fashion");
         category.add("Sport");
+        category.add("Tools");
         category.add("Tech");
         category.add("Kitchen");
         category.add("Animals");
