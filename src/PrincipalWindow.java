@@ -43,8 +43,11 @@ public class PrincipalWindow extends JFrame{
             listModel.addElement(i);
         }
         JList<Article> articleList = new JList<>(listModel);
+
         articleList.setCellRenderer(createArticleListCellRenderer());
         JScrollPane scrollPane = new JScrollPane(articleList);
+        changeItem("All", listModel);
+
 
         // create a combo box search
         ArrayList<String> category = new ArrayList<>();
@@ -73,7 +76,7 @@ public class PrincipalWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 listModel.clear();
-                changeItem(categoryComboBox.getSelectedItem().toString(), listModel, scrollPane);
+                changeItem(categoryComboBox.getSelectedItem().toString(), listModel);
             }
         });
         signOutButton.addActionListener(new ActionListener() {
@@ -119,9 +122,10 @@ public class PrincipalWindow extends JFrame{
             }
         });
 
-
+        System.out.println("yehah");
         pnlMain.add(menuJPanel, BorderLayout.NORTH);
         pnlMain.add(scrollPane, BorderLayout.WEST);
+
 
         setVisible(true);
 
@@ -148,16 +152,7 @@ public class PrincipalWindow extends JFrame{
         JLabel quantityLabel = new JLabel("Remaining quantity: " + article.remainingQuantity );
 
         JButton addToCartButton = new JButton("Add to Cart");
-        addToCartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                // Ajouter l'article au panier
-                itemInCart.add(article);
-                JOptionPane.showMessageDialog(null, "Article ajouté au panier : " + article.name);
-            }
-        });
 
-        infoPanel.add(addToCartButton);
 
         infoPanel.add(nameLabel);
         infoPanel.add(priceLabel);
@@ -196,27 +191,30 @@ public class PrincipalWindow extends JFrame{
 
     }
 
-    private void changeItem(String category, DefaultListModel<Article> listModel, JScrollPane scrollPane) {
+    private void changeItem(String category, DefaultListModel<Article> listModel) {
+
         ArrayList<Article> allArticle = DBO.SearchAllArticle();
         if (category.equals("- All")) {
             for (Article i : allArticle) {
                 listModel.addElement(i);
+
             }
-        } else
-        {
+        } else {
             for (Article i : allArticle) {
                 for (String categoriItem : i.category) {
-                    if (("- " + categoriItem).equals(category))
+                    if (("- " + categoriItem).equals(category)) {
                         listModel.addElement(i);
+                    }
                 }
             }
         }
-        JList<Article> articleList = new JList<>(listModel);
-        articleList.setCellRenderer(createArticleListCellRenderer());
+//        allButtonList.setModel(buttonListModel);
+//
+//        JList<Article> articleList = new JList<>(listModel);
+//        ListModel<Article> model = articleList.getModel();
+//
+//        articleList.setCellRenderer(createArticleListCellRenderer());
 
-        scrollPane.setViewportView(articleList);
+        //scrollPane.setViewportView(articleList);
     }
-
-
 }
-
