@@ -14,7 +14,7 @@ public class CheckoutWindow extends JFrame {
     private JComboBox yearComboBox;
     private JButton orderButton;
     private JButton cancelButton;
-    private JTextField crcTextField;
+    private JTextField cvcTextField;
     private JTextField adressTextField;
     private JTextField ownerTextField;
     private JLabel errorJLabel;
@@ -70,7 +70,7 @@ public class CheckoutWindow extends JFrame {
                 ArrayList<JTextField> textField = new ArrayList<>();
                 textField.add(ownerTextField);
                 textField.add(creditCardTextField);
-                textField.add(crcTextField);
+                textField.add(cvcTextField);
                 textField.add(adressTextField);
 
                 for(JTextField i : textField){
