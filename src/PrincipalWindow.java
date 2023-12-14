@@ -50,6 +50,7 @@ public class PrincipalWindow extends JFrame{
         ArrayList<String> category = new ArrayList<>();
         category.add("All");
         category.add("Fashion");
+        category.add("Food");
         category.add("Sport");
         category.add("Tools");
         category.add("Tech");
@@ -57,6 +58,7 @@ public class PrincipalWindow extends JFrame{
         category.add("Animals");
         category.add("Toys");
         category.add("Video-games");
+        category.add("Music");
         category.add("Gift-cards");
         category.add("Car");
         category.add("Furnitures");
