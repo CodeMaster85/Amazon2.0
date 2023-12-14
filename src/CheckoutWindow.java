@@ -78,7 +78,9 @@ public class CheckoutWindow extends JFrame {
                         errorJLabel.setText("Error : Please complete all the tabs");
                     }
                     else {
-                        //order summary is visible
+                        OrderSummaryWindow orderSummaryWindow = new OrderSummaryWindow();
+                        orderSummaryWindow.setVisible(true);
+                        setVisible(false);
                     }
                 }
 
