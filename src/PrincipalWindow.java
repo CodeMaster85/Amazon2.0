@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,6 +64,23 @@ public class PrincipalWindow extends JFrame{
             }
         });
 
+
+        // Ajouter un ListSelectionListener pour détecter les changements de sélection dans la JList
+        articleList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    // Obtenez l'élément sélectionné dans la JList
+                    Article selectedArticle = articleList.getSelectedValue();
+
+                    // Ajoutez l'article sélectionné au panier
+                    if (selectedArticle != null) {
+                        articlesInCart.add(selectedArticle);
+                        System.out.println("Added to Cart: "+ selectedArticle);
+                    }
+                }
+            }
+        });
 
 
         // create a combo box search
