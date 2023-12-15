@@ -7,7 +7,13 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.ArrayList;
-
+/**
+ * The PrincipalWindow class represents the main window of the XYTExpress.com application.
+ * It displays a list of articles and provides navigation options for users.
+ *
+ * @author Yohan Chuet and Thomas Fortier
+ * @version 1.0
+ */
 public class PrincipalWindow extends JFrame{
     private JPanel pnlMain;
     private JButton signOutButton;
@@ -22,6 +28,10 @@ public class PrincipalWindow extends JFrame{
 
     private ArrayList<Article> itemInCart = new ArrayList<>();
 
+    /**
+     * Constructs a new instance of the PrincipalWindow class.
+     * Initializes the GUI components, sets up event listeners, and displays the main window.
+     */
     public PrincipalWindow()
     {
         pnlMain = new JPanel(new BorderLayout());
@@ -49,31 +59,18 @@ public class PrincipalWindow extends JFrame{
         articleList.setCellRenderer(createArticleListCellRenderer());
         JScrollPane scrollPane = new JScrollPane(articleList);
         changeItem("All", listModel);
-        int size = articleList.getModel().getSize();
 
         ArrayList<Article> articlesInCart = new ArrayList<>();
 
         JButton addToCartButton = new JButton("Add to Cart");
-        addToCartButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                Article selectedArticle = articleList.getSelectedValue();
-                if (selectedArticle != null) {
-                    DBO.articleInCart.add(selectedArticle); // Ajoutez l'article au panier
-                }
-            }
-        });
 
-
-        // Ajouter un ListSelectionListener pour détecter les changements de sélection dans la JList
+        // Add a ListSelectionListener to detect selection
         articleList.addListSelectionListener(new ListSelectionListener() {
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    // Obtenez l'élément sélectionné dans la JList
                     Article selectedArticle = articleList.getSelectedValue();
 
-                    // Ajoutez l'article sélectionné au panier
                     if (selectedArticle != null) {
                         DBO.articleInCart.add(selectedArticle);
                         System.out.println("Added to Cart: "+ selectedArticle);
@@ -132,23 +129,15 @@ public class PrincipalWindow extends JFrame{
                 cartWindow.setVisible(true);
                 setVisible(false);
             }
-
             @Override
-            public void mousePressed(MouseEvent e) {
-
-            }
-
+            public void mousePressed(MouseEvent e) {}
             @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-
+            public void mouseReleased(MouseEvent e) {}
             @Override
             public void mouseEntered(MouseEvent e) {
                 cartJLabel.setForeground(Color.BLUE);
                 cartJLabel.setText("<html><u>" + "Cart" + "</u></html>");
             }
-
             @Override
             public void mouseExited(MouseEvent e) {
                 cartJLabel.setForeground(Color.BLACK);
@@ -156,17 +145,18 @@ public class PrincipalWindow extends JFrame{
             }
         });
 
-        System.out.println("yehah");
         pnlMain.add(menuJPanel, BorderLayout.NORTH);
         pnlMain.add(scrollPane, BorderLayout.WEST);
 
-
         setVisible(true);
-
-
     }
-    // modify and create Article
-    // use this function to refactor the element on the list
+
+    /**
+     * Creates a JPanel for displaying detailed information about an article.
+     *
+     * @param article The article for which the panel is created.
+     * @return A JPanel containing information about the specified article.
+     */
     private JPanel createArticlePanel(Article article) {
         JPanel articlePanel = new JPanel(new BorderLayout());
         //int borderSize = 5;
@@ -198,8 +188,11 @@ public class PrincipalWindow extends JFrame{
 
         return articlePanel;
     }
-    // modify and create list
-    // use this function to refactor the  list
+    /**
+     * Creates a custom ListCellRenderer for rendering articles in the JList.
+     *
+     * @return A ListCellRenderer for rendering articles with additional features.
+     */
     private ListCellRenderer<? super Article> createArticleListCellRenderer() {
         return new DefaultListCellRenderer() {
             @Override
@@ -232,7 +225,11 @@ public class PrincipalWindow extends JFrame{
         };
 
     }
-
+    /**
+     * Changes the items displayed in the article list based on the selected category.
+     * @param category   The selected category for filtering articles.
+     * @param listModel  The DefaultListModel used to update the article list.
+     */
     private void changeItem(String category, DefaultListModel<Article> listModel) {
 
         ArrayList<Article> allArticle = DBO.SearchAllArticle();
