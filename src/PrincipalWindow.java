@@ -98,7 +98,7 @@ public class PrincipalWindow extends JFrame{
         category.add("Toys");
         category.add("Video-games");
         category.add("Music");
-        category.add("Gift cards");
+        category.add("Gift-cards");
         category.add("Car");
         category.add("Furnitures");
         for (String s : category) {
