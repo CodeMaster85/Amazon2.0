@@ -2,6 +2,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+
 /**
  * The OrderSummaryWindow class displays the order summary after a successful purchase in the XYTExpress.com application.
  * It provides information about the total price and an estimated delivery time.
@@ -36,7 +38,8 @@ public class OrderSummaryWindow extends JFrame {
 
         competeJLabel.setFont(new Font("Arial", Font.BOLD,20));
         summaryJLabel.setFont(new Font("Arial",Font.BOLD,15));
-        String orderInfo = "<html>price : " + price + "$" + "<br/>your command will be delivered in less than a year!!!! (maybe not!)</html>";
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+        String orderInfo = "<html>price : " + Double.parseDouble(decimalFormat.format(price))  + "$" + "<br/>your command will be delivered in less than a year!!!! (maybe not!)</html>";
         orderInfoLabel.setText(orderInfo);
         DBO.articleInCart.clear();
         homePageButton.addActionListener(new ActionListener() {

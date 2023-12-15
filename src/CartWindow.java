@@ -112,6 +112,7 @@ public class CartWindow extends JFrame{
         }
         informationLabel = new JLabel("Subtotal = \t\t" + Double.parseDouble(decimalFormat.format(subtotal)) + "$");
 
+        pnlOptions.add(errorJLabel);
         pnlOptions.add(checkoutButton);
         pnlOptions.add(informationLabel);
 
