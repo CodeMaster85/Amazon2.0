@@ -82,9 +82,12 @@ public class CartWindow extends JFrame{
         checkoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                setVisible(false);
-                CheckoutWindow checkoutWindow = new CheckoutWindow(subtotal);
-                checkoutWindow.setVisible(true);
+                // if list is empty, you can't pay
+                if (!DBO.articleInCart.isEmpty()) {
+                    setVisible(false);
+                    CheckoutWindow checkoutWindow = new CheckoutWindow(subtotal);
+                    checkoutWindow.setVisible(true);
+                }
             }
         });
         homePageButton.addActionListener(new ActionListener() {

@@ -38,7 +38,7 @@ public class OrderSummaryWindow extends JFrame {
         summaryJLabel.setFont(new Font("Arial",Font.BOLD,15));
         String orderInfo = "<html>price : " + price + "$" + "<br/>your command will be delivered in less than a year!!!! (maybe not!)</html>";
         orderInfoLabel.setText(orderInfo);
-
+        DBO.articleInCart.clear();
         homePageButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
