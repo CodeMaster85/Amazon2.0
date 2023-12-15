@@ -72,7 +72,7 @@ public class CreateAccountWindow extends JFrame {
 
                 if (errorJLabel.getText().isEmpty() && errorJLabel2.getText().isEmpty()){
                     try {
-                        DBO.addUser(usernameTextField.getText(), passwordTextField.getText(), firstNameLabel.getText(),lastNameTextField.getText(),emailTextField.getText());
+                        DBO.addUser(usernameTextField.getText(), passwordTextField.getText(), firstNameTextField.getText(),lastNameTextField.getText(),emailTextField.getText());
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
