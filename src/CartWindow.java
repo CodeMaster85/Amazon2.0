@@ -4,6 +4,8 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+
 /**
  * The CartWindow class represents the shopping cart window in the XYTExpress.com application.
  * It displays the articles added to the cart, allows users to remove items, and provides options
@@ -55,6 +57,8 @@ public class CartWindow extends JFrame{
         JScrollPane scrollPane = new JScrollPane(articleList);
 
         cartTitleJLabel.setFont(new Font("Pokemon",Font.BOLD,20));
+        DecimalFormat decimalFormat = new DecimalFormat("#.##");
+
 
 
         articleList.addListSelectionListener(new ListSelectionListener() {
@@ -73,7 +77,7 @@ public class CartWindow extends JFrame{
 
                         // adjust the price
                         subtotal -= selectedArticle.price;
-                        informationLabel.setText("Subtotal = \t\t" + subtotal + "$");
+                        informationLabel.setText("Subtotal = \t\t" +Double.parseDouble(decimalFormat.format(subtotal)) + "$");
                     }
                 }
             }
@@ -102,7 +106,7 @@ public class CartWindow extends JFrame{
         for (Article i : DBO.articleInCart) {
             subtotal += i.price;
         }
-        informationLabel = new JLabel("Subtotal = \t\t" + subtotal + "$");
+        informationLabel = new JLabel("Subtotal = \t\t" + Double.parseDouble(decimalFormat.format(subtotal)) + "$");
 
         pnlOptions.add(checkoutButton);
         pnlOptions.add(informationLabel);
