@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class DBO {
+
+    public static ArrayList<Article> articleInCart = new ArrayList<>();
 //    public static ArrayList<Article> SearchAllArticle()
 //    {
 //        ArrayList<Article> item = new ArrayList<>();

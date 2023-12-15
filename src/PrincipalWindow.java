@@ -59,7 +59,7 @@ public class PrincipalWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 Article selectedArticle = articleList.getSelectedValue();
                 if (selectedArticle != null) {
-                    articlesInCart.add(selectedArticle); // Ajoutez l'article au panier
+                    DBO.articleInCart.add(selectedArticle); // Ajoutez l'article au panier
                 }
             }
         });
@@ -75,7 +75,7 @@ public class PrincipalWindow extends JFrame{
 
                     // Ajoutez l'article sélectionné au panier
                     if (selectedArticle != null) {
-                        articlesInCart.add(selectedArticle);
+                        DBO.articleInCart.add(selectedArticle);
                         System.out.println("Added to Cart: "+ selectedArticle);
                     }
                 }
@@ -169,7 +169,7 @@ public class PrincipalWindow extends JFrame{
     // use this function to refactor the element on the list
     private JPanel createArticlePanel(Article article) {
         JPanel articlePanel = new JPanel(new BorderLayout());
-        int borderSize = 5;
+        //int borderSize = 5;
         articlePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE)); // Ajoute une bordure noire
 
         ImageIcon icon = new ImageIcon(article.pathImage);
@@ -185,7 +185,7 @@ public class PrincipalWindow extends JFrame{
         JLabel priceLabel = new JLabel("Price: $" + article.price);
         JLabel quantityLabel = new JLabel("Remaining quantity: " + article.remainingQuantity );
 
-        JButton addToCartButton = new JButton("Add to Cart");
+        //JButton addToCartButton = new JButton("Add to Cart");
 
 
         infoPanel.add(nameLabel);
@@ -218,12 +218,11 @@ public class PrincipalWindow extends JFrame{
                     articlePanel.setBackground(list.getBackground());
                     articlePanel.setForeground(list.getForeground());
                 }
-                ArrayList<Article> articlesInCart = new ArrayList<>();
                 JButton addToCartButton = new JButton("Add to Cart");
                 addToCartButton.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        articlesInCart.add(article); // Ajoutez l'article au panier
+                        DBO.articleInCart.add(article); // Ajoutez l'article au panier
                     }
                 });
 
@@ -251,13 +250,5 @@ public class PrincipalWindow extends JFrame{
                 }
             }
         }
-//        allButtonList.setModel(buttonListModel);
-//
-//        JList<Article> articleList = new JList<>(listModel);
-//        ListModel<Article> model = articleList.getModel();
-//
-//        articleList.setCellRenderer(createArticleListCellRenderer());
-
-        //scrollPane.setViewportView(articleList);
     }
 }

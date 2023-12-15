@@ -1,4 +1,6 @@
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,10 +15,9 @@ public class CartWindow extends JFrame{
     private JPanel pnlOptions;
     private JPanel pnlMenu;
     private JLabel informationLabel;
-    double subtotal = 0;
+    double subtotal = 0.0;
 
     public CartWindow(){
-        ArrayList<Article> articles =  DBO.SearchAllArticle();;
         pnlMain = new JPanel(new BorderLayout());
         pnlOptions = new JPanel();
         pnlMain.setLayout(new BoxLayout(pnlMain, BoxLayout.Y_AXIS));
@@ -28,7 +29,7 @@ public class CartWindow extends JFrame{
         setLocationRelativeTo(null);
 
         DefaultListModel<Article> listModel = new DefaultListModel<>();
-        for (Article i : articles) {
+        for (Article i : DBO.articleInCart) {
             listModel.addElement(i);
         }
         JList<Article> articleList = new JList<>(listModel);
@@ -38,8 +39,28 @@ public class CartWindow extends JFrame{
         cartTitleJLabel.setFont(new Font("Pokemon",Font.BOLD,20));
 
 
+        articleList.addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                if (!e.getValueIsAdjusting()) {
+                    // Obtenez l'élément sélectionné dans la JList
+                    Article selectedArticle = articleList.getSelectedValue();
 
-        for (Article i : articles) {
+                    // Ajoutez l'article sélectionné au panier
+                    if (selectedArticle != null) {
+                        DBO.articleInCart.remove(selectedArticle);
+                        System.out.println("remove to Cart: "+ selectedArticle.name);
+                        listModel.remove(articleList.getSelectedIndex());
+                        JList<Article> articleList = new JList<>(listModel);
+                        articleList.setCellRenderer(createArticleListCellRenderer());
+                        subtotal -= selectedArticle.price;
+
+                        informationLabel.setText("Subtotal = \t\t" + subtotal + "$");
+                    }
+                }
+            }
+        });
+        for (Article i : DBO.articleInCart) {
             subtotal += i.price;
         }
         checkoutButton.addActionListener(new ActionListener() {
@@ -89,7 +110,7 @@ public class CartWindow extends JFrame{
         JLabel priceLabel = new JLabel("Price: $" + article.price);
         JLabel quantityLabel = new JLabel("Remaining quantity: " + article.remainingQuantity );
 
-        JButton addToCartButton = new JButton("Add to Cart");
+        //JButton addToCartButton = new JButton("Add to Cart");
 
 
         infoPanel.add(nameLabel);
