@@ -29,6 +29,7 @@ public class CartWindow extends JFrame{
     private JPanel pnlOptions;
     private JPanel pnlMenu;
     private JLabel informationLabel;
+    private JLabel errorJLabel;
     double subtotal = 0.0;
 
     /**
@@ -87,6 +88,9 @@ public class CartWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 // if list is empty, you can't pay
+                if (DBO.articleInCart.isEmpty()){
+                    errorJLabel.setText("Error : You can't checkout because your cart is empty");
+                }
                 if (!DBO.articleInCart.isEmpty()) {
                     setVisible(false);
                     CheckoutWindow checkoutWindow = new CheckoutWindow(subtotal);
