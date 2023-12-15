@@ -4,7 +4,18 @@ import java.awt.event.*;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-
+/**
+ * The CreateAccountWindow class represents the window for creating a new user account in the XYTExpress.com application.
+ * Users can input their personal information, and the system checks for completion and password match before creating the account.
+ *
+ * <p>The window includes text fields for first name, last name, username, email, password, and confirmation password.
+ * It also provides error messages for incomplete information or mismatched passwords.</p>
+ *
+ * @author Thomas
+ * @see DBO
+ * @see LoginWindow
+ * @version 1.0
+ */
 public class CreateAccountWindow extends JFrame {
     private JPanel pnlMain;
     private JTextField firstNameTextField;
@@ -20,7 +31,12 @@ public class CreateAccountWindow extends JFrame {
     private JLabel errorJLabel2;
     private JLabel titleJLabel;
 
-
+    /**
+     * Constructs a new instance of the CreateAccountWindow class.
+     *
+     * <p>The window initializes the graphical user interface components, including text fields for personal information,
+     * buttons for account creation and cancellation, and error labels for feedback.</p>
+     */
     public CreateAccountWindow() {
         setContentPane(pnlMain);
 
@@ -54,7 +70,7 @@ public class CreateAccountWindow extends JFrame {
                     }
                 }
 
-                if (errorJLabel.getText()=="" && errorJLabel2.getText()==""){
+                if (errorJLabel.getText().isEmpty() && errorJLabel2.getText().isEmpty()){
                     try {
                         DBO.addUser(usernameTextField.getText(), passwordTextField.getText(), firstNameLabel.getText(),lastNameTextField.getText(),emailTextField.getText());
                     } catch (IOException ex) {
@@ -70,56 +86,42 @@ public class CreateAccountWindow extends JFrame {
         });
         usernameTextField.addKeyListener(new KeyListener() {
             @Override
-            public void keyTyped(KeyEvent e) { //Chat GPT
+            public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == ' ') {
-                    e.consume(); // Empêche l'ajout de l'espace dans le JTextField
+                    e.consume();
+                    // ignore space event
                 }
             }
             @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
+            public void keyPressed(KeyEvent e) {}
             @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
+            public void keyReleased(KeyEvent e) {}
         });
         passwordTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == ' ') {
-                    e.consume(); // Empêche l'ajout de l'espace dans le JTextField
+                    e.consume();
+                    // ignore space event
                 }
             }
-
             @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
+            public void keyPressed(KeyEvent e) {}
             @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
+            public void keyReleased(KeyEvent e) {}
         });
         emailTextField.addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
                 if (e.getKeyChar() == ' ') {
-                    e.consume(); // Empêche l'ajout de l'espace dans le JTextField
+                    e.consume();
+                    // ignore space event
                 }
             }
-
             @Override
-            public void keyPressed(KeyEvent e) {
-
-            }
-
+            public void keyPressed(KeyEvent e) {}
             @Override
-            public void keyReleased(KeyEvent e) {
-
-            }
+            public void keyReleased(KeyEvent e) {}
         });
         cancelButton.addActionListener(new ActionListener() {
             @Override

@@ -4,8 +4,20 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
-
+/**
+ * The CartWindow class represents the shopping cart window in the XYTExpress.com application.
+ * It displays the articles added to the cart, allows users to remove items, and provides options
+ * to proceed to check out or return to the main page.
+ *
+ * <p>The window includes a JList to show the articles in the cart, buttons for checkout and returning to the main page,
+ * and an information label displaying the subtotal of the items in the cart.</p>
+ *
+ * @author Thomas and Yohan
+ * @see Article
+ * @see CheckoutWindow
+ * @see PrincipalWindow
+ * @version 1.0
+ */
 public class CartWindow extends JFrame{
     private JList cartArticleJList;
     private JButton checkoutButton;
@@ -17,6 +29,12 @@ public class CartWindow extends JFrame{
     private JLabel informationLabel;
     double subtotal = 0.0;
 
+    /**
+     * Constructs a new instance of the CartWindow class.
+     *
+     * <p>The window initializes the graphical user interface components, including the JList for displaying
+     * articles in the cart, buttons for navigation and checkout, and an information label for the subtotal.</p>
+     */
     public CartWindow(){
         pnlMain = new JPanel(new BorderLayout());
         pnlOptions = new JPanel();
@@ -43,26 +61,24 @@ public class CartWindow extends JFrame{
             @Override
             public void valueChanged(ListSelectionEvent e) {
                 if (!e.getValueIsAdjusting()) {
-                    // Obtenez l'élément sélectionné dans la JList
                     Article selectedArticle = articleList.getSelectedValue();
 
-                    // Ajoutez l'article sélectionné au panier
+                    // add article in cart
                     if (selectedArticle != null) {
                         DBO.articleInCart.remove(selectedArticle);
                         System.out.println("remove to Cart: "+ selectedArticle.name);
                         listModel.remove(articleList.getSelectedIndex());
                         JList<Article> articleList = new JList<>(listModel);
                         articleList.setCellRenderer(createArticleListCellRenderer());
-                        subtotal -= selectedArticle.price;
 
+                        // adjust the price
+                        subtotal -= selectedArticle.price;
                         informationLabel.setText("Subtotal = \t\t" + subtotal + "$");
                     }
                 }
             }
         });
-        for (Article i : DBO.articleInCart) {
-            subtotal += i.price;
-        }
+
         checkoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -80,6 +96,9 @@ public class CartWindow extends JFrame{
             }
         });
 
+        for (Article i : DBO.articleInCart) {
+            subtotal += i.price;
+        }
         informationLabel = new JLabel("Subtotal = \t\t" + subtotal + "$");
 
         pnlOptions.add(checkoutButton);
@@ -88,13 +107,17 @@ public class CartWindow extends JFrame{
         pnlMain.add(pnlMenu);
         pnlMain.add(scrollPane);
         pnlMain.add(pnlOptions);
+
         setVisible(true);
-
-
     }
+    /**
+     * Creates a JPanel for displaying detailed information about an article.
+     *
+     * @param article The article for which the panel is created.
+     * @return A JPanel containing information about the specified article.
+     */
     private JPanel createArticlePanel(Article article) {
         JPanel articlePanel = new JPanel(new BorderLayout());
-        int borderSize = 5;
         articlePanel.setBorder(BorderFactory.createLineBorder(Color.BLUE)); // Ajoute une bordure noire
 
         ImageIcon icon = new ImageIcon(article.pathImage);
@@ -102,38 +125,37 @@ public class CartWindow extends JFrame{
         icon = new ImageIcon(scaledImage);
         JLabel pathImageLabel = new JLabel(icon);
 
-        // Créer un panneau pour le nom, le prix et la quantité
+        // create new panel for name price and quantity
         JPanel infoPanel = new JPanel(new GridLayout(3, 3)); // Utilisation de GridLayout avec une seule ligne
 
-        // Ajouter le nom, le prix et la quantité au panneau d'informations
+        // add the name, price and quantity on information
         JLabel nameLabel = new JLabel(article.name);
         JLabel priceLabel = new JLabel("Price: $" + article.price);
         JLabel quantityLabel = new JLabel("Remaining quantity: " + article.remainingQuantity );
-
-        //JButton addToCartButton = new JButton("Add to Cart");
 
 
         infoPanel.add(nameLabel);
         infoPanel.add(priceLabel);
         infoPanel.add(quantityLabel);
 
-        // Ajouter le panneau d'informations à droite du panneau principal
         articlePanel.add(pathImageLabel, BorderLayout.WEST);
         articlePanel.add(infoPanel, BorderLayout.SOUTH);
 
         return articlePanel;
     }
+    /**
+     * Creates a custom ListCellRenderer for rendering articles in the JList.
+     *
+     * @return A ListCellRenderer for rendering articles with additional features.
+     */
     private ListCellRenderer<? super Article> createArticleListCellRenderer() {
         return new DefaultListCellRenderer() {
             @Override
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-                if (!(value instanceof Article)) {
+                if (!(value instanceof Article article)) {
                     return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
                 }
-
-                Article article = (Article) value;
                 JPanel articlePanel = createArticlePanel(article);
-
                 if (isSelected) {
                     articlePanel.setBackground(list.getSelectionBackground());
                     articlePanel.setForeground(list.getSelectionForeground());
@@ -141,7 +163,6 @@ public class CartWindow extends JFrame{
                     articlePanel.setBackground(list.getBackground());
                     articlePanel.setForeground(list.getForeground());
                 }
-
                 return articlePanel;
             }
         };
