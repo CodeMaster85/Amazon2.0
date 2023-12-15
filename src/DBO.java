@@ -68,41 +68,6 @@ public class DBO {
         return false;
     }
 
-//    static public void addUser(String userName, String password) throws IOException {
-//        File file = new File("Amazon2.0\\src\\dataWish.txt");
-//
-//        // Lire toutes les lignes existantes dans une liste
-//        List<String> lines = new ArrayList<>();
-//        boolean foundEmptyLine = false;
-//
-//        try (BufferedReader br = new BufferedReader(new FileReader(file))) {
-//            String line;
-//            while ((line = br.readLine()) != null) {
-//                if (line.isEmpty() && !foundEmptyLine) {
-//                    // Ajouter la nouvelle ligne à la première ligne vide
-//                    lines.add(userName + " " + password + "\n");
-//                    foundEmptyLine = true;
-//                } else {
-//                    lines.add(line);
-//                }
-//            }
-//        }
-//
-//        // Si aucune ligne vide n'a été trouvée, ajouter la nouvelle ligne à la fin
-//        if (!foundEmptyLine) {
-//            lines.add(userName + " " + password);
-//        }
-//
-//        // Réécrire le fichier avec toutes les lignes
-//        try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-//            for (String line : lines) {
-//                bw.write(line);
-//                bw.newLine();
-//            }
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 static public void addUser(String userName, String password, String firstName, String lastName, String email) throws IOException {
     File file = new File("Amazon2.0\\src\\User.csv");
 
