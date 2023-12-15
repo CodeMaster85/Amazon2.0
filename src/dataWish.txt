@@ -2,17 +2,3 @@ yohan 1234
 thomas 0123
 Xavier 2345
 Poulette hello
-
-Article
-KOORUI 24 inch computer monitor, FHD 1080p, 165Hz
-189.99
-Amazon2.0\images\Article1.jpg
-3
-Tech Video-games
-
-Article
-Rentable child cage
-449.99
-Amazon2.0\images\Article2.png
-1
-Toys Furnitures
