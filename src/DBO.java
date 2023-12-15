@@ -41,7 +41,7 @@ public class DBO {
                 String[] data = line.split(",");
 
                 String articleName = data[0];
-                Double price = Double.parseDouble(data[1]);
+                double price = Double.parseDouble(data[1]);
                 String pathImage = data[2];
                 int remainingQuantity = Integer.parseInt(data[3]);
 
